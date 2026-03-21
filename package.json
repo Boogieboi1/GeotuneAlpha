@@ -1,5 +1,5 @@
 {
-  "name": "f",
+  "name": "threejs-journey-exercise",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,9 +12,7 @@
     "vite-plugin-restart": "^0.4.2"
   },
   "dependencies": {
-    "@jscad/csg": "^0.7.0",
-    "lil-gui": "^0.21.0",
-    "three": "^0.174.0",
-    "three-csg-ts": "^3.2.0"
+    "lil-gui": "^0.20.0",
+    "three": "^0.174.0"
   }
 }
