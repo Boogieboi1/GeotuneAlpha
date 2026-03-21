@@ -34,7 +34,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
       - name: Install dependencies
-        run: npm run
+        run:  npm install
+      - name: iInstall dependencies
+        run: npm ci 
       - name: Build app
         run: npm run build
       - name: Setup Pages
