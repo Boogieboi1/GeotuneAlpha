@@ -7,8 +7,8 @@ import {DRACOLoader} from 'three/examples/jsm/loaders/DRACOLoader.js'
 /**
  * Base
  */
-// Debug
-const gui = new GUI()
+// // Debug
+// const gui = new GUI()
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -40,8 +40,8 @@ gltfLoader.load(
 
 
        scene.add(gltf.scene) 
-       gltf.scene.scale.set(100, 100, 100)  
-       gltf.scene.position.set(0, 2, 0)  
+       gltf.scene.scale.set(1, 1, 1)  
+       gltf.scene.position.set(0, 0, 0)  
     }
     
 )
@@ -51,9 +51,10 @@ gltfLoader.load(
  * Lights
  */
 const ambientLight = new THREE.AmbientLight(0xffffff, 5)
+ambientLight.position.set(-1, -1, 1)
 scene.add(ambientLight)
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1.8)
+const directionalLight = new THREE.DirectionalLight(0xffffff, 100)
 directionalLight.castShadow = true
 directionalLight.shadow.mapSize.set(1024, 1024)
 directionalLight.shadow.camera.far = 15
@@ -63,6 +64,8 @@ directionalLight.shadow.camera.right = 7
 directionalLight.shadow.camera.bottom = - 7
 directionalLight.position.set(1, 1, 1)
 scene.add(directionalLight)
+
+
 
 /**
  * Sizes
@@ -74,15 +77,21 @@ const sizes = {
 
 window.addEventListener('resize', () =>
 {
-    // Update sizes
     sizes.width = window.innerWidth
     sizes.height = window.innerHeight
 
-    // Update camera
-    camera.aspect = sizes.width / sizes.height
+    const aspect = sizes.width / sizes.height
+    const frustumSize = 5
+
+    // Update orthographic camera correct
+    camera.left   = -frustumSize * aspect / 2
+    camera.right  =  frustumSize * aspect / 2
+    camera.top    =  frustumSize / 2
+    camera.bottom = -frustumSize / 2
+
     camera.updateProjectionMatrix()
 
-    // Update renderer
+    // Renderer
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
@@ -113,12 +122,14 @@ controls.enableDamping = true
  * Renderer
  */
 const renderer = new THREE.WebGLRenderer({
-    canvas: canvas
+    canvas: canvas,
+    antialias: true
 })
 renderer.shadowMap.enabled = true
 renderer.shadowMap.type = THREE.PCFSoftShadowMap
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
 
 /**
  * Animate
