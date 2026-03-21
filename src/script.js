@@ -30,7 +30,7 @@ gltfLoader.setDRACOLoader(dracoLoader)
 let mixer = null
 
 gltfLoader.load(
-    '/models/FlightHelmet/glTF/displaytest.glb',
+    `${import.meta.env.BASE_URL}models/FlightHelmet/glTF/displaytest.glb`,
     (gltf)=>
     {
         // console.log(gltf)
