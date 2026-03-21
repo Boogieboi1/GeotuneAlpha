@@ -1,21 +1,23 @@
 import restart from 'vite-plugin-restart'
+import { defineConfig } from 'vite'
 
-export default {
-    root: 'src/', // Sources files (typically where index.html is)
-    publicDir: '../static/', // Path from "root" to static assets (files that are served as they are)
+export default defineConfig({
+    base: '/GeotuneAlpha/',
+    root: 'src/',
+    publicDir: '../static/',
     server:
     {
-        host: true, // Open to local network and display URL
-        open: !('SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env) // Open if it's not a CodeSandbox
+        host: true,
+        open: !('SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env)
     },
     build:
     {
-        outDir: '../dist', // Output in the dist/ folder
-        emptyOutDir: true, // Empty the folder first
-        sourcemap: true // Add sourcemap
+        outDir: '../dist',
+        emptyOutDir: true,
+        sourcemap: true
     },
     plugins:
     [
-        restart({ restart: [ '../static/**', ] }) // Restart server on static file change
-    ],
-}
+        restart({ restart: ['../static/**'] })
+    ]
+})
