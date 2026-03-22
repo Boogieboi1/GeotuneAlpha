@@ -1,28 +1,47 @@
 import './style.css'
 import ReactDOM from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'
-import Experience from './Experience.jsx'
-import { StrictMode} from 'react'
+import { Suspense, useState } from 'react'
 import { Leva } from 'leva'
+import Experience from './Experience.jsx'
 
-const root = ReactDOM.createRoot(document.querySelector('#root'))
+function App() {
+  const [betaEnabled, setBetaEnabled] = useState(false)
 
-root.render(
-
-    <StrictMode>
-        <Leva  />
-        
-        <Canvas
-            orthographic
-            camera={ {
-                fov: 45,
-                near: 0.1,
-                far: 2000,
-                position: [ 0, 0, 200],
-                zoom : 10
-            } }
+  return (
+    <>
+      {!betaEnabled && (
+        <button
+          onClick={() => setBetaEnabled(true)}
+          className="beta-button"
         >
-            <Experience />
-        </Canvas>
-    </StrictMode>
-)
+          Try Beta!
+        </button>
+      )}
+
+      <Leva hidden={!betaEnabled} />
+
+      <Canvas
+        dpr={[1, 2]}
+        gl={{ antialias: true }}
+        camera={{
+          fov: 45,
+          near: 0.1,
+          far: 10000,
+          position: [0, 0,100]
+        }}
+      >
+        <color attach="background" args={['#111']} />
+
+        <Suspense fallback={null}>
+          <Experience betaEnabled={betaEnabled} />
+        </Suspense>
+      </Canvas>
+    </>
+  )
+}
+
+const rootElement = document.querySelector('#root')
+const root = ReactDOM.createRoot(rootElement)
+
+root.render(<App />)

@@ -19,14 +19,13 @@ export default function CabinetHandle({ scale = 1, exportRef, material }) {
 
   // Parameters via Leva
   const { w, d, wt, w1, w2, h1, h2, r1 } = useControls('CabinetHandle', {
-    w: { value: 10, min: 5, max: 200, step: 0.01 },
-    d: { value: 10, min: 5, max: 200, step: 0.01 },
-    wt: { value: 1.2, min: 1, max: 20, step: 0.01 },
-    w1: { value: 20, min: 1, max: 20, step: 0.01 },
-    w2: { value: 30, min: 1, max: 20, step: 0.01 },
-    h1: { value: 30, min: 1, max: 20, step: 0.01 },
-    h2: { value: 30, min: 0, max: 20, step: 0.01 },
-    r1: { value: .5, min: 0, max: 2, step: 0.01 },
+    d: { value: 10, min: 5, max: 500, step: 0.01, label: 'Extrusion' },
+    wt: { value: 1.2, min: 1, max: 10, step: 0.01, label: 'Wall thickness'  },
+    w1: { value: 20, min: 1, max: 500, step: 0.01, label: 'Gap size'  },
+    w2: { value: 30, min: 1, max: 500, step: 0.01, label: 'Length handle'  },
+    h1: { value: 30, min: 1, max: 500, step: 0.01, label: 'Top height'  },
+    h2: { value: 30, min: 0, max: 500, step: 0.01, label: 'Bottom height'  },
+    r1: { value: .5, min: 0, max: 20, step: 0.01, label: 'Radius'  },
     
     
   })

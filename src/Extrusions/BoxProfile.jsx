@@ -19,11 +19,11 @@ export default function BoxProfile({ scale = 1, exportRef, material }) {
   
   // Parameters via Leva
   const { w, h, d, radius, wt } = useControls('BoxProfile', {
-    w: { value: 50, min: 1, max: 9999, step: 0.01 },
-    h: { value: 50, min: 1, max: 9999, step: 0.01 },
-    d: { value: 50, min: 1, max: 9999, step: 0.01 },
-    radius: { value: 3, min: 0, max: 20, step: 0.01 },
-    wt: { value: 1.2, min: 0, max: 20, step: 0.01 }
+    w: { value: 50, min: 1, max: 500, step: 0.01, label: 'Width'},
+    h: { value: 50, min: 1, max: 500, step: 0.01, label: 'Height' },
+    d: { value: 50, min: 1, max: 500, step: 0.01, label: 'Extrusion' },
+    radius: { value: 3, min: 0, max: 100, step: 0.01, label: 'Radius' },
+    wt: { value: 1.2, min: 0, max: 100, step: 0.01, label: 'Wall thickness' }
   })
 
   const hw = w / 2

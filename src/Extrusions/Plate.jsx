@@ -19,9 +19,9 @@ export default function Plate({ scale = 1, exportRef, material }) {
 
   // Parameters via Leva
   const { w, d, wt } = useControls('Plate', {
-    w: { value: 50, min: 5, max: 200, step: 0.01 },
-    d: { value: 50, min: 5, max: 200, step: 0.01 },
-    wt: { value: 1.2, min: 0, max: 20, step: 0.01 }
+    w: { value: 50, min: 5, max: 200, step: 0.01, label: 'Width'  },
+    d: { value: 50, min: 5, max: 200, step: 0.01, label: 'Extrusion'  },
+    wt: { value: 1.2, min: 0, max: 20, step: 0.01, label: 'Wall thickness'  }
   })
 
   // Sketch shape
